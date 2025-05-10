@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Categories extends Model
+class Courses extends Model
 {
-    protected $table = 'categories';
+    use SoftDeletes;
+    protected $table = 'courses';
 
     protected $guarded = [];
-
-    // protected $fillable = ['user_id'];
 
     public $timestamps = true;
 }

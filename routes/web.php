@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/categories/create', [CategoriesController::class, 'create'])->name('categories.create');
     Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
+
+    // Courses routes
+    Route::get('/courses/create', [CoursesController::class, 'create'])->name('course.create');
+    Route::post('/courses/store', [CoursesController::class, 'store'])->name('courses.store');
 });
 
 require __DIR__ . '/auth.php';

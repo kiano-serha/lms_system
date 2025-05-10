@@ -32,7 +32,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $info =  $request->validate([
-            'category_id' => ['nullable', 'integer', 'exists:category,id'],
+            'category_id' => ['nullable', 'integer'],
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048']

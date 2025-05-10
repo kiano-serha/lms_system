@@ -8,10 +8,10 @@
     <title>@yield('title')</title>
     <!-- CSS files -->
     <link href="../tabler/dist/css/tabler.min.css?1692870487" rel="stylesheet" />
-    {{-- <link href="../tabler/dist/css/tabler-flags.min.css?1692870487" rel="stylesheet" />
-    <link href="../tabler/dist/css/tabler-payments.min.css?1692870487" rel="stylesheet" />
-    <link href="../tabler/dist/css/tabler-vendors.min.css?1692870487" rel="stylesheet" /> --}}
     <link href="../tabler/dist/css/demo.min.css?1692870487" rel="stylesheet" />
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -92,7 +92,7 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
                             </svg>
                         </a>
-                        <div class="nav-item dropdown d-none d-md-flex me-3">
+                        {{-- <div class="nav-item dropdown d-none d-md-flex me-3">
                             <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                                 aria-label="Show notifications">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
@@ -106,7 +106,7 @@
                                 </svg>
                                 <span class="badge bg-red"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+                             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3 class="card-title">Last updates</h3>
@@ -219,7 +219,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
@@ -227,7 +227,7 @@
                             <span class="avatar avatar-sm"
                                 style="background-image: url(./tabler/static/avatars/000m.jpg)"></span>
                             <div class="d-none d-xl-block ps-2">
-                                <div>Paweł Kuna</div>
+                                <div>{{ auth()->user()->first_name }}</div>
                                 <div class="mt-1 small text-secondary">UI Designer</div>
                             </div>
                         </a>
@@ -476,7 +476,7 @@
                                     d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
                             </svg>
                         </a>
-                        <div class="nav-item dropdown d-none d-md-flex me-3">
+                        {{-- <div class="nav-item dropdown d-none d-md-flex me-3">
                             <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                                 aria-label="Show notifications">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
@@ -603,25 +603,36 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                             aria-label="Open user menu">
-                            <span class="avatar avatar-sm"
-                                style="background-image: url(./tabler/static/avatars/000m.jpg)"></span>
+                            <span class="avatar avatar-sm">
+                                {{ substr(auth()->user()->first_name, 0, 1) . '' . substr(auth()->user()->last_name, 0, 1) }}
+                            </span>
                             <div class="d-none d-xl-block ps-2">
-                                <div>Paweł Kuna</div>
-                                <div class="mt-1 small text-secondary">UI Designer</div>
+                                <div>{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</div>
+                                <div class="mt-1 small text-secondary">{{ auth()->user()->username }}</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="#" class="dropdown-item">Status</a>
-                            <a href="../tabler/profile.html" class="dropdown-item">Profile</a>
-                            <a href="#" class="dropdown-item">Feedback</a>
+                            {{-- <a href="#" class="dropdown-item">Status</a> --}}
+                            <a href="{{ route('profile.edit') }}" class="dropdown-item">Profile</a>
+                            {{-- <a href="#" class="dropdown-item">Feedback</a> --}}
                             <div class="dropdown-divider"></div>
-                            <a href="../tabler/settings.html" class="dropdown-item">Settings</a>
-                            <a href="../tabler/sign-in.html" class="dropdown-item">Logout</a>
+                            {{-- <a href="../tabler/settings.html" class="dropdown-item">Settings</a> --}}
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <button href=""
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                                    class="dropdown-item">
+                                    Log out
+                                </button>
+                            </form>
+                            {{-- <a href="../tabler/sign-in.html" class="dropdown-item">Logout</a> --}}
                         </div>
                     </div>
                 </div>

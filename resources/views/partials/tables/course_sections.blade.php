@@ -18,7 +18,9 @@
                         <td>{{ $section->viewable }}</td>
                         <td>{{ substr($section->description, 0, 20) . '...' }}</td>
                         <td>
-                            <button class="btn btn-primary btn-sm">
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#courseSectionContentModal"
+                                onclick="setSectionId({{ json_encode($section->id) }})">
                                 Add Content
                             </button>
                             <button class="btn btn-danger btn-sm">
@@ -34,3 +36,11 @@
         </table>
     </div>
 </div>
+
+@include('partials.modals.add_section_content')
+
+<script>
+    function setSectionId(id) {
+        document.getElementById('section_id_c').value = id;
+    }
+</script>

@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses', [CoursesController::class, 'index'])->name('courses.index');
     Route::get('/courses-edit/{id}', [CoursesController::class, 'show'])->name('courses.edit');
     Route::post('/course-section/store', [CoursesController::class, 'storeSection'])->name('course.store.section');
+    Route::post('/section-content/store', [CoursesController::class, 'storeContent'])->name('course.section.content.store');
 });
 
 require __DIR__ . '/auth.php';

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CoursesRequest;
 use App\Models\Categories;
+use App\Models\ContentLinks;
 use App\Models\Courses;
+use App\Models\CourseSectionContents;
 use App\Models\CourseSections;
 use App\Servies\GeneralServices;
 use Illuminate\Http\Request;
@@ -112,6 +114,32 @@ class CoursesController extends Controller
     public function edit(Courses $courses)
     {
         //
+    }
+
+    public function storeContent(Request $request)
+    {
+        try {
+            $section_content = CourseSectionContents::create([
+                'course_id' => $request->data['course_id'],
+                'course_section_id' => $request->data['section_id'],
+                'title' => $request->data['title'],
+                'description' => $request->data['description']
+            ]);
+
+            $i = 0;
+            foreach ($request->data['link_titles'] as $title) {
+                ContentLinks::create([
+                    'course_section_content_id' => $section_content->id,
+                    'title' => $title,
+                    'type' => $request->data['link_types'][$i]
+                ]);
+                $i++;
+            }
+
+            return ['success', 'Content has been added to this section successfully.'];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**

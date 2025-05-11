@@ -3,8 +3,6 @@
 @section('page-tile', 'Create Course')
 
 @section('content')
-    {{-- <div class="col"> --}}
-    {{ $errors }}
     <form action="{{ route('courses.store') }}" method="POST" enctype="multipart/form-data" class="col">
         @csrf
         @method('POST')

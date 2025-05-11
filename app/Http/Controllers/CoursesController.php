@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CoursesRequest;
 use App\Models\Categories;
 use App\Models\Courses;
+use App\Models\CourseSections;
 use App\Servies\GeneralServices;
 use Illuminate\Http\Request;
 use Exception;
@@ -17,7 +18,10 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Courses::with('category')->get();
+        if (auth()->user()->role_id == 1) {
+            return view('courses.admin.index', compact('courses'));
+        }
     }
 
     /**
@@ -56,12 +60,42 @@ class CoursesController extends Controller
         }
     }
 
+    public function storeSection(Request $request)
+    {
+        try {
+            if (CourseSections::create([
+                'course_id' => $request->data['course_id'],
+                'title' => $request->data['title'],
+                'description' => $request->data['description'],
+                'viewable' => $request->data['viewable'],
+                'url_title' => $this->generateSectionURLTitle($request->data['title'])
+            ])) {
+                return ['success', 'Course Section has been added successfully.'];
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    protected function generateSectionURLTitle($course_section_title)
+    {
+        $slug = Str::slug($course_section_title);
+        $course_section = CourseSections::where('url_title', 'like', $slug . '%')->count();
+
+        return  $course_section > 0 ? $slug . '-' . ($course_section + 1) : $slug;
+    }
+
     /**
      * Display the specified resource.
      */
-    public function show(Courses $courses)
+    public function show(Request $request)
     {
-        //
+        $course = Courses::find($request->route('id'));
+        $categories = Categories::all();
+        $sections = CourseSections::where('course_id', $request->route('id'))->get();
+        if (auth()->user()->role_id == 1) {
+            return view('courses.admin.edit', compact('course', 'categories', 'sections'));
+        }
     }
 
     protected function generateURLTitle($course_title)

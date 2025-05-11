@@ -11,6 +11,12 @@
     <link href="../tabler/dist/css/demo.min.css?1692870487" rel="stylesheet" />
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://rsms.me/inter/inter.css');
@@ -331,8 +337,11 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="../tabler/empty.html">
-                                            Empty page
+                                        <a class="dropdown-item" href="/courses/create">
+                                            Add Course
+                                        </a>
+                                        <a class="dropdown-item" href="/courses">
+                                            View All
                                         </a>
                                     </div>
                                 </div>
@@ -673,7 +682,7 @@
                             </h2>
                         </div>
                         <!-- Page title actions -->
-                        <div class="col-auto ms-auto d-print-none">
+                        {{-- <div class="col-auto ms-auto d-print-none">
                             <div class="btn-list">
                                 <span class="d-none d-sm-inline">
                                     <a href="#" class="btn">
@@ -704,7 +713,7 @@
                                     </svg>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

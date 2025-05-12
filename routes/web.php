@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/section-content/store', [CoursesController::class, 'storeContent'])->name('course.section.content.store');
     Route::post('/quiz/store', [CoursesController::class, 'storeQuiz'])->name('quiz.store');
     Route::post('/course-enroll', [CoursesController::class, 'enrollUser'])->name('course.enroll');
+    Route::get('/view-course/{id}', [CoursesController::class, 'show'])->name('course.view.student');
 });
 
 require __DIR__ . '/auth.php';

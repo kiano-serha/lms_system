@@ -141,6 +141,8 @@ class CoursesController extends Controller
         // $sections = CourseSections::where('course_id', $request->route('id'))->get();
         if (auth()->user()->role_id == 1) {
             return view('courses.admin.edit', compact('course', 'categories'));
+        } else {
+            return view('courses.student.view', compact('course', 'categories'));
         }
     }
 

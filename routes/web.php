@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/quiz/store', [CoursesController::class, 'storeQuiz'])->name('quiz.store');
     Route::post('/course-enroll', [CoursesController::class, 'enrollUser'])->name('course.enroll');
     Route::get('/view-course/{id}', [CoursesController::class, 'show'])->name('course.view.student');
+    Route::get('/user/courses', [CoursesController::class, 'userCourses'])->name('user.courses');
 });
 
 require __DIR__ . '/auth.php';

@@ -31,4 +31,9 @@ class Courses extends Model
     {
         return $this->hasMany(Quizzes::class, 'course_id', 'id');
     }
+
+    public function courseUsers(): HasMany
+    {
+        return $this->hasMany(CourseUsers::class, 'course_id', 'id');
+    }
 }

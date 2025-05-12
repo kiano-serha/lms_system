@@ -31,6 +31,15 @@ class CoursesController extends Controller
         }
     }
 
+    public function userCourses()
+    {
+        $courses = Courses::with('courseUsers')
+            ->whereRelation('courseUsers', 'user_id', auth()->user()->id)
+            ->get();
+
+        return view('courses.student.index', compact('courses'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-
+    @include('partials.messages')
     <script>
         function showSection(section_id, element) {
             // console.log(element);

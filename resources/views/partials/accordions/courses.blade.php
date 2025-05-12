@@ -3,11 +3,11 @@
         <div class="accordion-item mb-2 border rounded">
             <h2 class="accordion-header" id="heading-1">
                 <button class="accordion-button " type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapse-{{ $section->id }}" aria-expanded="true">
+                    data-bs-target="#collapse-section-{{ $section->id }}" aria-expanded="true">
                     {{ $section->title }}
                 </button>
             </h2>
-            <div id="collapse-{{ $section->id }}" class="accordion-collapse collapse"
+            <div id="collapse-section-{{ $section->id }}" class="accordion-collapse collapse"
                 data-bs-parent="#accordion-example">
                 <div class="accordion-body pt-0">
                     {{-- <strong>This is the first item's accordion body.</strong> It is hidden by default, until the

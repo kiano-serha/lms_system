@@ -28,13 +28,13 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item">
+                                        <a class="dropdown-item" href="/view-course/{{ $course->id }}">
                                             View Details
                                         </a>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="" class="dropdown-item">
+                                        <a href="/view-course/{{ $course->id }}" class="dropdown-item">
                                             Go to Course
                                         </a>
                                     </li>

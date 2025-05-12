@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/course-enroll', [CoursesController::class, 'enrollUser'])->name('course.enroll');
     Route::get('/view-course/{id}', [CoursesController::class, 'show'])->name('course.view.student');
     Route::get('/user/courses', [CoursesController::class, 'userCourses'])->name('user.courses');
+    Route::get('/quiz-attempt/{id}', [QuizController::class, 'show'])->name('quiz.attempt');
+    Route::post('/quiz/attempt', [QuizController::class, 'storeAttempt'])->name('quiz.attempt.store');
 });
 
 require __DIR__ . '/auth.php';

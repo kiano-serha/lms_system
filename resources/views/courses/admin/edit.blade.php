@@ -52,7 +52,7 @@
                         </form> --}}
 
                         {{-- Curriculum --}}
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col">
                                 <h2 class="text-muted fw-bold">
                                     Curriculum
@@ -66,7 +66,25 @@
                         </div>
                         <hr class="m-0">
                         @include('partials.tables.course_sections')
-                        @include('partials.modals.add_section')
+                        @include('partials.modals.add_section') --}}
+
+                        {{-- Quizzes --}}
+                        {{-- <div class="row">
+                            <div class="col">
+                                <h2 class="text-muted fw-bold">
+                                    Course Quizzes
+                                </h2>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quizModal"
+                                    onclick="addSections({{ json_encode($course->courseSections) }})">
+                                    Add New Quiz
+                                </button>
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        @include('partials.tables.quizes')
+                        @include('partials.modals.add_quiz') --}}
                     </div>
 
                 </div>

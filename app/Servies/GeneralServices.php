@@ -24,7 +24,8 @@ class GeneralServices
             $extension = request()->file($file)->getClientOriginalExtension();
             $fileNameToStore = $filename . '-' . time() . '.' . $extension;
             $path = request()->file($file)->storeAs($path, $fileNameToStore);
-            return asset($path);
+            return $path;
+            // return asset($path);
         }
         return null;
     }

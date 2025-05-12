@@ -8,6 +8,9 @@ use App\Models\ContentLinks;
 use App\Models\Courses;
 use App\Models\CourseSectionContents;
 use App\Models\CourseSections;
+use App\Models\CourseUsers;
+use App\Models\QuizPrerequisites;
+use App\Models\Quizzes;
 use App\Servies\GeneralServices;
 use Illuminate\Http\Request;
 use Exception;
@@ -23,6 +26,8 @@ class CoursesController extends Controller
         $courses = Courses::with('category')->get();
         if (auth()->user()->role_id == 1) {
             return view('courses.admin.index', compact('courses'));
+        } else {
+            return view('courses.student.index', compact('courses'));
         }
     }
 
@@ -79,6 +84,45 @@ class CoursesController extends Controller
         }
     }
 
+    public function storeQuiz(Request $request)
+    {
+        try {
+            $quiz = Quizzes::create([
+                'course_id' => $request->data['course_id'],
+                'title' => $request->data['title'],
+                'viewable' => $request->data['viewable'],
+            ]);
+
+            foreach ($request->data['prereq_sections'] as $req) {
+                QuizPrerequisites::create([
+                    'quiz_id' => $quiz->id,
+                    'section_id' => $req
+                ]);
+            }
+
+            return ["success", "Quiz has been added successfully."];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function enrollUser(Request $request)
+    {
+        try {
+            CourseUsers::create([
+                'user_id' => auth()->user()->id,
+                'course_id' => $request->data['course_id']
+            ]);
+
+            return [
+                'success',
+                'You have been enrolled successfully.'
+            ];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     protected function generateSectionURLTitle($course_section_title)
     {
         $slug = Str::slug($course_section_title);
@@ -92,11 +136,11 @@ class CoursesController extends Controller
      */
     public function show(Request $request)
     {
-        $course = Courses::find($request->route('id'));
+        $course = Courses::with('courseSections')->find($request->route('id'));
         $categories = Categories::all();
-        $sections = CourseSections::where('course_id', $request->route('id'))->get();
+        // $sections = CourseSections::where('course_id', $request->route('id'))->get();
         if (auth()->user()->role_id == 1) {
-            return view('courses.admin.edit', compact('course', 'categories', 'sections'));
+            return view('courses.admin.edit', compact('course', 'categories'));
         }
     }
 

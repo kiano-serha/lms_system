@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($sections as $section)
+                @foreach ($course->courseSections as $section)
                     <tr>
                         <td>{{ $section->id }}</td>
                         <td>{{ $section->title }}</td>

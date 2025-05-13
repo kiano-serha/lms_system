@@ -250,7 +250,7 @@
                 <div class="collapse navbar-collapse" id="sidebar-menu">
                     <ul class="navbar-nav pt-lg-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="../tabler/">
+                            <a class="nav-link" href="/dashboard">
                                 <span
                                     class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -437,12 +437,14 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
-                                        <a class="dropdown-item" href="./alerts.html">
+                                        {{-- <a class="dropdown-item" href="./alerts.html">
                                             All Categories
-                                        </a>
-                                        <a class="dropdown-item" href="./alerts.html">
-                                            Add Category
-                                        </a>
+                                        </a> --}}
+                                        @if (auth()->user()->role_id == 1)
+                                            <a class="dropdown-item" href="/categories/create">
+                                                Add Category
+                                            </a>
+                                        @endif
                                         {{-- <div class="dropend">
                                             <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication"
                                                 data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
@@ -737,10 +739,10 @@
                         <div class="col-lg-auto ms-lg-auto">
                             <ul class="list-inline list-inline-dots mb-0">
                                 <li class="list-inline-item"><a href="https://tabler.io/docs" target="_blank"
-                                        class="link-secondary" rel="noopener">Documentation</a></li>
+                                        class="link-secondary" rel="noopener">All Courses</a></li>
                                 <li class="list-inline-item"><a href="../tabler/license.html"
-                                        class="link-secondary">License</a></li>
-                                <li class="list-inline-item"><a href="https://github.com/tabler/tabler"
+                                        class="link-secondary">Certificates</a></li>
+                                {{-- <li class="list-inline-item"><a href="https://github.com/tabler/tabler"
                                         target="_blank" class="link-secondary" rel="noopener">Source code</a></li>
                                 <li class="list-inline-item">
                                     <a href="https://github.com/sponsors/codecalm" target="_blank"
@@ -757,7 +759,7 @@
                                         </svg>
                                         Sponsor
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="col-12 col-lg-auto mt-3 mt-lg-0">

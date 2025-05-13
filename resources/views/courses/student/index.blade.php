@@ -1,6 +1,6 @@
 @extends('layouts.logged_in')
 
-@section('page-tile', 'All Courses')
+@section('page-tile', 'My Courses')
 
 @section('content')
     @foreach ($courses as $course)

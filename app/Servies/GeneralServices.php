@@ -4,9 +4,10 @@ namespace App\Servies;
 
 use App\Models\Courses;
 use Illuminate\Support\Facades\File;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
-use App\PDF;
+// use App\PDF;
 use setasign\Fpdi\Fpdi;
 use setasign\Fpdi\PdfReader\PageBoundaries;
 
@@ -35,6 +36,14 @@ class GeneralServices
             // return asset($path);
         }
         return null;
+    }
+
+    public function generateCertificate($course_name)
+    {
+        $pdf = Pdf::loadView('certificates.view', ['course' => $course_name]);
+        $pdf->setPaper('A4', 'landscape');
+
+        return $pdf->stream();
     }
 
     // public function generateCertificate($course_id)
@@ -75,8 +84,5 @@ class GeneralServices
     //     return response()->download($public_dir . '/Certificates.zip', 'Certificates.zip');
     // }
 
-    public function __construct()
-    {
-        
-    }
+    public function __construct() {}
 }

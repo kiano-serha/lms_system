@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
 
     //Cerificate
     Route::get('/generate/certificate', function () {
-
-        $pdf = Pdf::loadView('certificates.view');
+        // $course = "What is hypertension";
+        $pdf = Pdf::loadView('certificates.view', ['course' => "What is Hypertension"]);
         $pdf->setPaper('A4', 'landscape');
 
         return $pdf->stream();

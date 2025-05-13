@@ -23,14 +23,14 @@
             <div style="width:50%; margin:auto; text-align:center">
                 <div class="text-align:center">This certificate is proudly presented to</div>
                 <div>
-                    <h1 style="font-family:cursive">Kian O'Connor</h1>
+                    <h1 style="font-family:cursive">{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</h1>
                     <hr>
                 </div>
-                For completing the course "Hypertension Knowledge Plus"<br /> intended to increase health literacy of
+                For completing the course "{{ $course }}"<br /> intended to increase health literacy of
                 hypertension
             </div>
             <div style="text-align:center; margin-top:30px; width:10%; margin-left:auto; margin-right:auto">
-                <span>May 10, 2025</span>
+                <span>{{ date('Y-m-d') }}</span>
                 <hr>
                 <span>Date</span>
             </div>

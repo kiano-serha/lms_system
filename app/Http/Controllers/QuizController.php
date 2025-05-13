@@ -10,6 +10,7 @@ use Exception;
 
 class QuizController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */

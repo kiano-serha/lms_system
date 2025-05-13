@@ -36,4 +36,12 @@ class Courses extends Model
     {
         return $this->hasMany(CourseUsers::class, 'course_id', 'id');
     }
+
+    public function targetAudience():HasOne{
+        return $this->hasOne(TargetAudience::class, 'course_id', 'id');
+    }
+
+    public function learningOutcome():HasOne{
+        return $this->hasOne(LearningOutcomes::class, 'course_id', 'id');
+    }
 }

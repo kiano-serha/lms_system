@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LearningOutcomes extends Model
 {
-    protected $table = 'learning_outcomes';
+    protected $table = 'course_learning_outcomes';
 
     protected $guarded = [];
 

@@ -38,7 +38,7 @@
                                     </span>
                                 </td>
                                 <td >
-                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="/courses-edit/{{ $course->id }}" class="btn btn-warning btn-sm">Edit</a>
                                     {{-- <a href="" class="btn btn-primary"></a> --}}
                                     <a href="" class="btn btn-danger btn-sm">Inactivate</a>
                                 </td>

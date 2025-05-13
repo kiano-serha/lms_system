@@ -19,7 +19,7 @@
                     go
                     within the <code>.accordion-body</code>, though the transition does limit overflow. --}}
                     @foreach ($section->contents as $content)
-                        <div class="fw-bold">{{ $content->title }}</div>
+                        {{-- <div class="fw-bold">{{ $content->title }}</div> --}}
                         <div class="mb-1">{{ $content->description }}</div>
                         <div class="mb-3">
                             @foreach ($content->links as $link)
@@ -45,7 +45,7 @@
                                                 d="M6 10a7 7 0 1 1 13 3.6a10 10 0 0 1 -2 2a8 8 0 0 0 -2 3a4.5 4.5 0 0 1 -6.8 1.4" />
                                             <path d="M10 10a3 3 0 1 1 5 2.2" />
                                         </svg>
-                                    @elseif($link->type == 'article')
+                                    @elseif($link->type == 'info')
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -59,7 +59,7 @@
                                             <path d="M14 17h.01" />
                                         </svg>
                                     @endif
-                                    <a href="{{ $link->title }}"
+                                    <a href="{{ $link->title }}" target="_blank"
                                         class="text-decoration-underline mx-2">{{ $link->title }}</a>
                                 </div>
                             @endforeach

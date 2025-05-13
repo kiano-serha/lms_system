@@ -10,7 +10,6 @@
             <div class="card-header">
                 <h4 class="m-0">Please answer all questions</h4>
             </div>
-            {{ $errors }}
             <div class="card-body overflow-auto h-100">
                 <form action="{{ route('quiz.attempt.store') }}" method="POST">
                     @csrf
@@ -25,7 +24,7 @@
                                         <div>
                                             <label class="form-check">
                                                 <input class="form-check-input" type="radio" value="{{ $answer->id }}"
-                                                    name="answer[{{ $question->id }}]">
+                                                    name="answer[{{ $question->id }}]" required>
                                                 <span class="form-check-label">{{ $answer->answer }}</span>
                                             </label>
                                         </div>

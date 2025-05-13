@@ -69,7 +69,7 @@
                         @include('partials.modals.add_section') --}}
 
                         {{-- Quizzes --}}
-                        {{-- <div class="row">
+                        <div class="row">
                             <div class="col">
                                 <h2 class="text-muted fw-bold">
                                     Course Quizzes
@@ -84,7 +84,7 @@
                         </div>
                         <hr class="m-0">
                         @include('partials.tables.quizes')
-                        @include('partials.modals.add_quiz') --}}
+                        @include('partials.modals.add_quiz')
                     </div>
 
                 </div>
@@ -92,4 +92,25 @@
 
         </div>
     </div>
+    <script>
+        function showSection(section_id, element) {
+            // console.log(element);
+            // console.log()
+            divs = document.querySelectorAll("div.course_sections");
+            divs.forEach((section) => {
+                section.style.display = "none";
+            });
+
+            document.querySelectorAll('li.step-item').forEach((list_item) => {
+                list_item.classList.remove('active');
+            })
+
+            document.getElementById('section_' + section_id).style.display = '';
+
+
+            if (!element.classList.contains('active')) {
+                element.classList.add('active');
+            }
+        }
+    </script>
 @endsection

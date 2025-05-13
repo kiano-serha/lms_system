@@ -38,7 +38,6 @@ class QuizController extends Controller
     {
         $request->validate([
             'quiz_id' => 'required',
-            'answer.*' => 'required'
         ]);
 
         try {

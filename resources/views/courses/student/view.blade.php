@@ -14,7 +14,7 @@
                             <li class="step-item active" onclick="showSection(1, this)">Course Details</li>
                             <li class="step-item" onclick="showSection(2, this)">Learning Outcomes</li>
                             <li class="step-item" onclick="showSection(3, this)">Target Audience</li>
-                            <li class="step-item" onclick="showSection(4, this)">Curriculum</li>
+                            <li class="step-item" onclick="showSection(4, this)">Topics</li>
                             <li class="step-item" onclick="showSection(5, this)">Quizzes</li>
                             {{-- <li class="step-item">Students</li> --}}
                         </ul>
@@ -62,7 +62,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h2 class="text-muted fw-bold">
-                                        Curriculum
+                                        Topics
                                     </h2>
                                 </div>
                                 {{-- <div class="col-auto">

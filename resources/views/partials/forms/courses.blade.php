@@ -17,7 +17,8 @@
             {{ auth()->user()->role_id == 3 ? 'disabled' : '' }}>
             <option selected disabled>Please select a category</option>
             @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                <option value="{{ $category->id }}"
+                    {{ old('category_id') ? (old('category_id') == $category->id ? 'selected' : '') : (isset($course) ? ($course->category_id == $category->id ? 'selected' : '') : '') }}>
                     {{ $category->title }}
                 </option>
             @endforeach

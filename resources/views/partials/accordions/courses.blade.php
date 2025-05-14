@@ -66,8 +66,11 @@
                         </div>
                         {{-- <br>
                         <br> --}}
+                        <div>
+                            <img class="w-100 p-3 rounded" src="{{ asset('storage/' . $content->file) }}" alt="">
+                        </div>
                     @endforeach
-                    <button class="btn btn-success">
+                    {{-- <button class="btn btn-success">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-check">
@@ -75,7 +78,7 @@
                             <path d="M5 12l5 5l10 -10" />
                         </svg>
                         Mark Complete
-                    </button>
+                    </button> --}}
                 </div>
             </div>
 

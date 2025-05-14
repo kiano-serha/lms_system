@@ -15,9 +15,9 @@
                     <tr>
                         <td>{{ $section->id }}</td>
                         <td>{{ $section->title }}</td>
-                        <td>{{ $section->viewable }}</td>
+                        <td>{{ $section->viewable == 1 ? 'YES' : 'NO' }}</td>
                         <td>{{ substr($section->description, 0, 20) . '...' }}</td>
-                        <td>
+                        <td class="text-nowrap">
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#courseSectionContentModal"
                                 onclick="setSectionId({{ json_encode($section->id) }})">

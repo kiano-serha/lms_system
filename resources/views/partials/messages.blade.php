@@ -14,4 +14,12 @@
             icon: "error"
         });
     </script>
+@elseif (session('info'))
+    <script>
+        Swal.fire({
+            title: "Error",
+            text: {!! json_encode(session('info')) !!},
+            icon: "info"
+        });
+    </script>
 @endif

@@ -36,18 +36,22 @@ Route::middleware('auth')->group(function () {
     Route::post('/course-enroll', [CoursesController::class, 'enrollUser'])->name('course.enroll');
     // Route::get('/view-course/{id}', [CoursesController::class, 'show'])->name('course.view.student');
     // Route::get('/user/courses', [CoursesController::class, 'userCourses'])->name('user.courses');
+    //Quizes
     Route::get('/quiz-attempt/{id}', [QuizController::class, 'show'])->name('quiz.attempt');
     Route::post('/quiz/attempt', [QuizController::class, 'storeAttempt'])->name('quiz.attempt.store');
+    // Route::get('/')
 
     //Cerificate
-    Route::get('/generate/certificate', function () {
-        // $course = "What is hypertension";
-        $pdf = Pdf::loadView('certificates.view', ['course' => "What is Hypertension"]);
-        $pdf->setPaper('A4', 'landscape');
+    Route::get('/certificates', [QuizController::class, 'indexCertificates'])->name('certificates.index');
+    Route::get('/certificates-print/{id}', [QuizController::class, 'printCertificate'])->name('certificates.print');
+    // Route::get('/generate/certificate', function () {
+    //     // $course = "What is hypertension";
+    //     $pdf = Pdf::loadView('certificates.view', ['course' => "What is Hypertension"]);
+    //     $pdf->setPaper('A4', 'landscape');
 
-        return $pdf->stream();
-        // return view();
-    });
+    //     return $pdf->stream();
+    //     // return view();
+    // });
 });
 
 require __DIR__ . '/auth.php';

@@ -35,7 +35,7 @@
     <script src="../tabler/dist/js/demo-theme.min.js?1692870487"></script>
     <div class="page">
         <!-- Sidebar -->
-        <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
+        <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark" style="background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%)">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
                     aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -249,7 +249,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="sidebar-menu">
                     <ul class="navbar-nav pt-lg-3">
-                        <li class="nav-item">
+                        <li class="nav-item mb-2">
                             <a class="nav-link" href="/dashboard">
                                 <span
                                     class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -308,7 +308,7 @@
                                 </span>
                             </a>
                         </li> --}}
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown mb-2">
                             <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
                                 data-bs-auto-close="false" role="button" aria-expanded="false">
                                 <span
@@ -337,11 +337,12 @@
                             <div class="dropdown-menu">
                                 <div class="dropdown-menu-columns">
                                     <div class="dropdown-menu-column">
-                                        @if (auth()->user()->role_id == 1)
+                                        @if (auth()->check() && auth()->user()->role_id == 1)
+                                            {{-- @if (auth()->user()->role_id == 1) --}}
                                             <a class="dropdown-item" href="/courses/create">
                                                 Add Course
                                             </a>
-                                        @elseif(count(auth()->user()->courses) > 0)
+                                        @elseif(auth()->check() && count(auth()->user()->courses) > 0)
                                             <a class="dropdown-item" href="/user/courses">
                                                 My courses
                                             </a>
@@ -384,7 +385,7 @@
                                 </div>
                             </div>
                         </li> --}}
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown mb-2">
                             <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                                 data-bs-auto-close="false" role="button" aria-expanded="false">
                                 <span
@@ -404,7 +405,7 @@
                                     </svg>
                                 </span>
                                 <span class="nav-link-title">
-                                    Certificates
+                                    Your Certificates
                                 </span>
                             </a>
                             <div class="dropdown-menu">
@@ -414,7 +415,7 @@
                                 </a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown mb-2">
                             <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                                 data-bs-auto-close="false" role="button" aria-expanded="false">
                                 <span
@@ -440,7 +441,8 @@
                                         {{-- <a class="dropdown-item" href="./alerts.html">
                                             All Categories
                                         </a> --}}
-                                        @if (auth()->user()->role_id == 1)
+                                        @if (auth()->check() && auth()->user()->role_id == 1)
+                                            {{-- @if (auth()->user()->role_id == 1) --}}
                                             <a class="dropdown-item" href="/categories/create">
                                                 Add Category
                                             </a>
@@ -626,11 +628,14 @@
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                             aria-label="Open user menu">
                             <span class="avatar avatar-sm">
-                                {{ substr(auth()->user()->first_name, 0, 1) . '' . substr(auth()->user()->last_name, 0, 1) }}
+                                {{ auth()->check() ? substr(auth()->user()->first_name, 0, 1) . '' . substr(auth()->user()->last_name, 0, 1) : 'G' }}
                             </span>
                             <div class="d-none d-xl-block ps-2">
-                                <div>{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}</div>
-                                <div class="mt-1 small text-secondary">{{ auth()->user()->username }}</div>
+                                <div>
+                                    {{ auth()->check() ? auth()->user()->first_name . ' ' . auth()->user()->last_name : 'Guest' }}
+                                </div>
+                                <div class="mt-1 small text-secondary">
+                                    {{ auth()->check() ? auth()->user()->username : 'User' }}</div>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

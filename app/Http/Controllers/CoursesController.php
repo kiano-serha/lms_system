@@ -24,7 +24,8 @@ class CoursesController extends Controller
     public function index()
     {
         $courses = Courses::with('category')->get();
-        if (auth()->user()->role_id == 1) {
+        if (auth()->check() && auth()->user()->role_id == 1) {
+            // auth()->user()->role_id == 1
             return view('courses.admin.index', compact('courses'));
         } else {
             return view('courses.student.index', compact('courses'));
@@ -148,7 +149,7 @@ class CoursesController extends Controller
         $course = Courses::with('courseSections')->find($request->route('id'));
         $categories = Categories::all();
         // $sections = CourseSections::where('course_id', $request->route('id'))->get();
-        if (auth()->user()->role_id == 1) {
+        if (auth()->check() && auth()->user()->role_id == 1) {
             return view('courses.admin.edit', compact('course', 'categories'));
         } else {
             return view('courses.student.view', compact('course', 'categories'));
@@ -183,14 +184,15 @@ class CoursesController extends Controller
 
             $i = 0;
             foreach ($request->data['link_titles'] as $title) {
-                ContentLinks::create([
-                    'course_section_content_id' => $section_content->id,
-                    'title' => $title,
-                    'type' => $request->data['link_types'][$i]
-                ]);
-                $i++;
+                if ($title != "") {
+                    ContentLinks::create([
+                        'course_section_content_id' => $section_content->id,
+                        'title' => $title,
+                        'type' => $request->data['link_types'][$i]
+                    ]);
+                    $i++;
+                }
             }
-
             return ['success', 'Content has been added to this section successfully.'];
         } catch (Exception $e) {
             return $e->getMessage();

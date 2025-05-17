@@ -80,7 +80,7 @@ class QuizController extends Controller
         }
         // return "success";
         if ((($correct_answers / count($request->answer)) * 100) == 100) {
-            if (!UserCertificates::where('user_id', auth()->user()->id)->first()) {
+            if (!UserCertificates::where('user_id', auth()->user()->id)->where('course_id',  Quizzes::find($request->quiz_id)->course_id)->first()) {
                 UserCertificates::create([
                     'user_id' => auth()->user()->id,
                     'course_id' => Quizzes::find($request->quiz_id)->course_id,
@@ -96,7 +96,7 @@ class QuizController extends Controller
             $quiz_title = Quizzes::find($request->quiz_id)->title;
             $course_id = Quizzes::find($request->quiz_id)->course_id;
             $questions = QuizQuestions::whereIn('id', $wrong_questions)->get();
-            return view('quizzes.student.wrong_answers', compact('questions', 'quiz_title', 'course_id'))->with(['info' => 'Quiz Attempt Submitted successfully. Your mark was ' . $correct_answers . ' out of ' . count($request->answer) . ' questions. Please see corrected quizzes']);
+            return view('quizzes.student.wrong_answers', compact('questions', 'quiz_title', 'course_id'))->with(['error' => 'Quiz Attempt Submitted successfully. Your mark was ' . $correct_answers . ' out of ' . count($request->answer) . ' questions. Please see corrected quizzes']);
             // return redirect()->route('course.view.student', ['id' => Quizzes::find($request->quiz_id)->course_id])->with(['error' => 'Quiz Attempt Submitted successfully. Your mark was only ' . $correct_answers . ' out of ' . count($request->answer) . ' questions. You need at least 80% to pass']);
         }
     }

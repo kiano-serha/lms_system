@@ -18,8 +18,9 @@
                     </div>
                     <div class="page-pretitle">{{ $course->tagline }}</div>
                 </div>
-                <button class="btn mb-3 mx-3" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                    style="background: linear-gradient(90deg, rgb(99, 102, 241), rgb(236, 72, 153)); color: #fff">
+                <button class="btn mb-3 mx-3 btn-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    {{-- style="background: linear-gradient(90deg, rgb(99, 102, 241), rgb(236, 72, 153)); color: #fff" --}}
+                    >
                     Options
                 </button>
                 <ul class="dropdown-menu">

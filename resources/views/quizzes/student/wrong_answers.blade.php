@@ -35,5 +35,6 @@
 
         </div>
     </div>
+    {{-- {{ session('error') }} --}}
     @include('partials.messages')
 @endsection

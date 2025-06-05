@@ -37,7 +37,7 @@
                                         {{ $course->issue_certification == 1 ? 'YES' : 'NO' }}
                                     </span>
                                 </td>
-                                <td >
+                                <td class="text-nowrap">
                                     <a href="/courses-edit/{{ $course->id }}" class="btn btn-warning btn-sm">Edit</a>
                                     {{-- <a href="" class="btn btn-primary"></a> --}}
                                     <a href="" class="btn btn-danger btn-sm">Inactivate</a>

@@ -129,4 +129,5 @@
             }
         }
     </script>
+    @include('partials.messages')
 @endsection

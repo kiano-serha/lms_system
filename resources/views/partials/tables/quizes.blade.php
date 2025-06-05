@@ -24,7 +24,7 @@
                             <td>{{ $quiz->viewable }}</td>
                             <td class="text-nowrap">
                                 <button class="btn btn-sm btn-primary">Make Visible</button>
-                                <button class="btn btn-sm btn-info">Add Questions</button>
+                                <a class="btn btn-sm btn-info" href="/create-questions/{{ $quiz->id }}">Add Questions</a>
                             </td>
                         </tr>
                     @endforeach

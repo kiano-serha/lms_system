@@ -13,6 +13,7 @@ use App\Servies\GeneralServices;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -49,6 +50,58 @@ class QuizController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function createQuestions(Request $request){
+        $quiz_id = $request->id;
+        return view('quizzes.admin.create', compact('quiz_id'));
+    }
+
+    public function storeQuestions(Request $request)
+    {
+        // dd($request->questions);
+        try {
+            DB::beginTransaction();
+            $i = 0;
+            foreach ($request->questions as $question) {
+                $quiz_question = QuizQuestions::create([
+                    'quiz_id' => $request->quiz_id,
+                    'question' => $question,
+                    'active'=>1
+                ]);
+
+                QuestionAnswers::create([
+                    'question_id' => $quiz_question->id,
+                    'answer' => $request->answers_1[$i],
+                    'correct' => $request->correct_answers[$i] == '1' ? 1 : 0
+                ]);
+
+                QuestionAnswers::create([
+                    'question_id' => $quiz_question->id,
+                    'answer' => $request->answers_2[$i],
+                    'correct' => $request->correct_answers[$i] == '2' ? 1 : 0
+                ]);
+
+                QuestionAnswers::create([
+                    'question_id' => $quiz_question->id,
+                    'answer' => $request->answers_3[$i],
+                    'correct' => $request->correct_answers[$i] == '3' ? 1 : 0
+                ]);
+
+                QuestionAnswers::create([
+                    'question_id' => $quiz_question->id,
+                    'answer' => $request->answers_4[$i],
+                    'correct' => $request->correct_answers[$i] == '4' ? 1 : 0
+                ]);
+                $i++;
+            }
+            DB::commit();
+            return redirect()->route('courses.edit', ['id'=> Quizzes::find($request->quiz_id)->course_id])->with('success', "Quiz Questions have been added successfully");
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+            // return $e->getMessage();
+        }
     }
 
     public function storeAttempt(Request $request)

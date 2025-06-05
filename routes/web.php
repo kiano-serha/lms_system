@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     //Quizes
     Route::get('/quiz-attempt/{id}', [QuizController::class, 'show'])->name('quiz.attempt');
     Route::post('/quiz/attempt', [QuizController::class, 'storeAttempt'])->name('quiz.attempt.store');
+    Route::get('/create-questions/{id}', [QuizController::class, 'createQuestions']);
+    Route::post('/store/questions',[QuizController::class, 'storeQuestions'])->name('store.questions');
     // Route::get('/')
 
     //Cerificate

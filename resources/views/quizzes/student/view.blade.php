@@ -36,6 +36,9 @@
                     <button class="btn btn-primary mt-3" type="submit">
                         Submit Answers
                     </button>
+                    <button class="btn btn-danger">
+                        Cancel
+                    </button>
                 </form>
             </div>
         </div>

@@ -3,8 +3,12 @@
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\LearningOutcomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\TargetAudienceController;
+use App\Models\LearningOutcomes;
+use App\Models\TargetAudience;
 use App\Servies\GeneralServices;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +28,6 @@ Route::get('/courses', [CoursesController::class, 'index'])->name('courses.index
 Route::post('/chatbot/prompt', [ChatBotController::class, 'getResponse'])->name('chatbot.send.prompt');
 Route::get('/chatbot', [ChatBotController::class, 'index']);
 
-Route::get('/api/testing', function(){
-    (new GeneralServices)->generateText("What is hypertension?");
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -38,32 +38,33 @@ Route::middleware('auth')->group(function () {
     // Courses routes
     Route::get('/courses/create', [CoursesController::class, 'create'])->name('course.create');
     Route::post('/courses/store', [CoursesController::class, 'store'])->name('courses.store');
-    // Route::get('/courses', [CoursesController::class, 'index'])->name('courses.index');
+
     Route::get('/courses-edit/{id}', [CoursesController::class, 'show'])->name('courses.edit');
     Route::post('/course-section/store', [CoursesController::class, 'storeSection'])->name('course.store.section');
     Route::post('/section-content/store', [CoursesController::class, 'storeContent'])->name('course.section.content.store');
+    Route::post('/course/active-stat', [CoursesController::class, 'changeActivation'])->name('course.change.active.status');
+
+
     Route::post('/quiz/store', [CoursesController::class, 'storeQuiz'])->name('quiz.store');
     Route::post('/course-enroll', [CoursesController::class, 'enrollUser'])->name('course.enroll');
-    // Route::get('/view-course/{id}', [CoursesController::class, 'show'])->name('course.view.student');
-    // Route::get('/user/courses', [CoursesController::class, 'userCourses'])->name('user.courses');
+
     //Quizes
     Route::get('/quiz-attempt/{id}', [QuizController::class, 'show'])->name('quiz.attempt');
     Route::post('/quiz/attempt', [QuizController::class, 'storeAttempt'])->name('quiz.attempt.store');
     Route::get('/create-questions/{id}', [QuizController::class, 'createQuestions']);
     Route::post('/store/questions', [QuizController::class, 'storeQuestions'])->name('store.questions');
-    // Route::get('/')
 
     //Cerificate
     Route::get('/certificates', [QuizController::class, 'indexCertificates'])->name('certificates.index');
     Route::get('/certificates-print/{id}', [QuizController::class, 'printCertificate'])->name('certificates.print');
-    // Route::get('/generate/certificate', function () {
-    //     // $course = "What is hypertension";
-    //     $pdf = Pdf::loadView('certificates.view', ['course' => "What is Hypertension"]);
-    //     $pdf->setPaper('A4', 'landscape');
 
-    //     return $pdf->stream();
-    //     // return view();
-    // });
+    //Target Audience
+    Route::post('/target-audience/store', [TargetAudienceController::class, 'store'])->name('target.audience.store');
+    Route::put('/target-audience/update', [TargetAudience::class, 'update'])->name('target.audience.update');
+
+    //Learning Outcomes
+    Route::post('/learning-outcomes/store', [LearningOutcomeController::class, 'store'])->name('learning.outcome.store');
+    Route::put('/learning-outcomes/update', [LearningOutcomeController::class, 'update'])->name('target-outcomes.update');
 });
 
 require __DIR__ . '/auth.php';

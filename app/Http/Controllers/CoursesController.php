@@ -164,6 +164,25 @@ class CoursesController extends Controller
         return  $course > 0 ? $slug . '-' . ($course + 1) : $slug;
     }
 
+    public function changeActivation(Request $request)
+    {
+        try {
+            if ($course = Courses::find($request->data['id'])) {
+                if ($course->active == 0) {
+                    $course->update(['active' => 1]);
+                } else {
+                    $course->update(['active' => 0]);
+                }
+            }
+            return [
+                "success",
+                "Course active status has been updated successfully"
+            ];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

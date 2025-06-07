@@ -5,6 +5,8 @@ namespace App\Servies;
 use App\Models\Courses;
 use Illuminate\Support\Facades\File;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Http;
+use OpenAI;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 // use App\PDF;
@@ -46,43 +48,26 @@ class GeneralServices
         return $pdf->stream();
     }
 
-    // public function generateCertificate($course_id)
-    // {
-    //     $public_dir = public_path("certificates/" . $uuid);
-
-    //     // $row = [
-    //     //     'class' => 'abc', // can you set your field on DB
-    //     //     'course' => $course->name, // can you set your field on DB
-    //     //     'formattedDate' => date('Y-m-d H:i:s')
-    //     // ];
-
-    //     $pdf = new PDF();
-    //     //Replace with an actual path
-    //     $pdf->setSourceFile(Storage::path(''));
-    //     $pdf->AddPage();
-    //     $pdf->SetFont("helvetica", "B", 17);
-    //     $pdf->SetTextColor(0, 0, 0);
-    //     $pdf->Text(13, 12, auth()->user()->name); // name awarded certificate
-    //     $pdf->Text(135, 124.5, Courses::find($course_id)->title);
-    //     $pdf->Text(150, 134, $row['class']);
-    //     $pdf->SetFont("helvetica", "B", 12);
-    //     $pdf->Text(120, $request->get('date-y'), $formattedDate);
-    //     $certificatePath = public_path("certificates/" . $uuid . "/" . auth()->user()->name . ".pdf");
-
-    //     $pdf->Output($certificatePath, 'F');
-
-
-    //     $zip = new ZipArchive;
-    //     if ($zip->open($public_dir . '/' . 'Certificates.zip', ZipArchive::CREATE) === TRUE) {
-    //         // Add File in ZipArchive
-    //         foreach (glob($public_dir . "/*") as $file) {
-    //             $zip->addFile($file, basename($file));
-    //         }
-    //         $zip->close();
-    //     }
-
-    //     return response()->download($public_dir . '/Certificates.zip', 'Certificates.zip');
-    // }
+    public function generateText($prompt)
+    {
+        return Http::withToken("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")
+            ->post(
+                'https://api.openai.com/v1/chat/completions',
+                [
+                    "model" => "gpt-4o-mini",
+                    "messages" => [
+                        [
+                            "role" => "system",
+                            "content" => "Only use credible sources and provide citations. If user question is not hypertension related, tell them you can not assist them."
+                        ],
+                        [
+                            "role" => "user",
+                            "content" => $prompt
+                        ]
+                    ]
+                ]
+            )->json('choices.0.message.content');
+    }
 
     public function __construct() {}
 }

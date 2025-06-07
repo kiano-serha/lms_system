@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
@@ -18,6 +19,9 @@ Route::get('/dashboard', function () {
 Route::get('/view-course/{id}', [CoursesController::class, 'show'])->name('course.view.student');
 Route::get('/user/courses', [CoursesController::class, 'userCourses'])->name('user.courses');
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses.index');
+
+Route::post('/chatbot/prompt', [ChatBotController::class, 'getResponse'])->name('chatbot.send.prompt');
+Route::get('/chatbot', [ChatBotController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -41,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/quiz-attempt/{id}', [QuizController::class, 'show'])->name('quiz.attempt');
     Route::post('/quiz/attempt', [QuizController::class, 'storeAttempt'])->name('quiz.attempt.store');
     Route::get('/create-questions/{id}', [QuizController::class, 'createQuestions']);
-    Route::post('/store/questions',[QuizController::class, 'storeQuestions'])->name('store.questions');
+    Route::post('/store/questions', [QuizController::class, 'storeQuestions'])->name('store.questions');
     // Route::get('/')
 
     //Cerificate

@@ -50,7 +50,7 @@ class GeneralServices
 
     public function generateText($prompt)
     {
-        return Http::withToken("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")
+        return Http::withToken("")
             ->post(
                 'https://api.openai.com/v1/chat/completions',
                 [

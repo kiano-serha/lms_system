@@ -15,13 +15,13 @@ class ChatBotController extends Controller
 
     public function getResponse(Request $request)
     {
-        try {
+        // try {
             $text = (new GeneralServices())->generateText($request->data['prompt']);
             return response()->json([
                 'message' => $text
             ]);
-        } catch (Exception $e) {
+        // } catch (Exception $e) {
             return response()->json(["message" => $e->getMessage()]);
-        }
+        // }
     }
 }

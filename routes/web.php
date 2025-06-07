@@ -5,6 +5,7 @@ use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
+use App\Servies\GeneralServices;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,10 @@ Route::get('/courses', [CoursesController::class, 'index'])->name('courses.index
 
 Route::post('/chatbot/prompt', [ChatBotController::class, 'getResponse'])->name('chatbot.send.prompt');
 Route::get('/chatbot', [ChatBotController::class, 'index']);
+
+Route::get('/api/testing', function(){
+    (new GeneralServices)->generateText("What is hypertension?");
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

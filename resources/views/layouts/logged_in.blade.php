@@ -11,7 +11,7 @@
     <link href="../tabler/dist/css/demo.min.css?1692870487" rel="stylesheet" />
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/F/libs/jquery/3.3.1/jquery.min.js"></script>
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
@@ -490,7 +490,7 @@
                             </div>
                         </li>
                         <li class="nav-item mb-2">
-                            <a class="nav-link" href="/dashboard">
+                            <a class="nav-link" href="/chatbot">
                                 <span
                                     class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

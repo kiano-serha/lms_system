@@ -42,10 +42,15 @@
                         <div id="section_2" style="display:none" class="course_sections">
                             <h2 class="text-muted fw-bold">Learning Outcome</h2>
                             <hr class="p-0 m-0">
-                            <form action="">
+                            <form
+                                action="{{ empty($course->learningOutcome) ? route('learning.outcome.store') : route('learning.outcomes.update') }}" method="{{ empty($course->learningOutcome) ? "POST" : "POST" }}" id="learning_outcome_form">
+                                @csrf
+                                {{-- @method('PUT') --}}
+                                <input type="text" hidden >
+                                <input type="text" name="course_id" hidden value="{{ $course->id }}">
                                 @include('partials.forms.learning_outcomes')
-                                <button class="btn btn-primary mt-3">
-                                    Submit Learning Outcome
+                                <button class="btn btn-primary mt-3" type="button" onclick="submitForm(this)">
+                                    {{ !empty($course->learningOutcome) ? 'Update Learning Outcome' : 'Submit Learning Outcomes' }}
                                 </button>
                             </form>
                         </div>
@@ -57,7 +62,7 @@
                             <form action="">
                                 @include('partials.forms.target_audience')
                                 <button class="btn btn-primary mt-3">
-                                    Submit Target Audience
+                                    {{ !empty($course->targetAudience) ? 'Update Target Audience' : 'Submit Target Audience' }}
                                 </button>
                             </form>
                         </div>
@@ -130,4 +135,9 @@
         }
     </script>
     @include('partials.messages')
+    <script>
+        function submitForm(button){
+            document.getElementById('learning_outcome_form').submit();
+        }
+    </script>
 @endsection

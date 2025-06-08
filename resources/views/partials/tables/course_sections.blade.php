@@ -27,9 +27,9 @@
                                 <button class="btn btn-danger btn-sm">
                                     Remove Visibility
                                 </button>
-                                <button class="btn btn-warning btn-sm">
+                                {{-- <button class="btn btn-warning btn-sm">
                                     Edit
-                                </button>
+                                </button> --}}
                             </td>
                         </tr>
                     @endforeach

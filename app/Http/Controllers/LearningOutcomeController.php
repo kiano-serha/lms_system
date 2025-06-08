@@ -12,31 +12,28 @@ class LearningOutcomeController extends Controller
     {
         try {
             LearningOutcomes::create([
-                'course_id' => $request->data['course_id'],
-                'description' => $request->data['description']
+                'course_id' => $request->course_id,
+                'description' => $request->description
             ]);
 
-            return [
-                "success",
-                "Learning Outcome has been added successfully"
-            ];
+            return redirect()->route('courses.edit', ['id' => $request->course_id])->with(["success" => "Learning Outcome for this course has been added successfully"]);
         } catch (Exception $e) {
-            return $e->getMessage();
+            return redirect()->back()->with(["error" => $e->getMessage()]);
         }
     }
 
     public function update(Request $request)
     {
         try {
-            LearningOutcomes::find($request->data['id'])
-                ->update(['description' => $request->data['description']]);
+            LearningOutcomes::find($request->id)
+                ->update(['description' => $request->description]);
 
             return [
                 "success",
                 "Learning Outcome has been updated successfully"
             ];
         } catch (Exception $e) {
-            return $e->getMessage();
+            return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
 }

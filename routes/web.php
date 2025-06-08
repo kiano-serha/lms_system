@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
 
     //Learning Outcomes
     Route::post('/learning-outcomes/store', [LearningOutcomeController::class, 'store'])->name('learning.outcome.store');
-    Route::put('/learning-outcomes/update', [LearningOutcomeController::class, 'update'])->name('target-outcomes.update');
+    Route::post('/learning-outcomes/update', [LearningOutcomeController::class, 'update'])->name('learning.outcomes.update');
 });
 
 require __DIR__ . '/auth.php';

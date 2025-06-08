@@ -21,9 +21,9 @@
                                     {{ $prerequisite->section?->title . ',' }}
                                 @endforeach
                             </td>
-                            <td>{{ $quiz->viewable }}</td>
+                            <td>{{ $quiz->viewable == '1' ? 'YES' : 'NO' }}</td>
                             <td class="text-nowrap">
-                                <button class="btn btn-sm btn-primary">Make Visible</button>
+                                <button class="btn btn-sm btn-primary">Remove Visibility</button>
                                 <a class="btn btn-sm btn-info" href="/create-questions/{{ $quiz->id }}">Add Questions</a>
                             </td>
                         </tr>

@@ -7,7 +7,7 @@
         <div class="col-md-3 col-xs-12">
             <div class="card rounded hover-overlay hover-zoom hover-shadow ripple">
                 <div class="card-body p-0 rounded">
-                    <img src="{{ asset('storage/' . $course->image) }}" alt="" class="h-100">
+                    <img src="{{ asset('storage/' . $course->image) }}" alt="" class="w-100">
                 </div>
                 <div class="card-footer">
                     {{-- {{ in_array(12, auth()->user()->courses?->pluck('user_id')->flatten()->toArray()) }} --}}

@@ -113,7 +113,7 @@
         }
 
         function getResponse() {
-            $.post({!! json_encode(url('/chatbot/prompt')) !!}, {
+            $.post({!! json_encode(url(route('chatbot.send.prompt'))) !!}, {
                 _method: "POST",
                 data: {
                     prompt: document.getElementById('message').value

@@ -12,6 +12,9 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 
     <script src="https://ajax.googleapis.com/F/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    {{-- Try JQuery --}}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}

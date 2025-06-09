@@ -50,7 +50,7 @@ class GeneralServices
 
     public function generateText($prompt)
     {
-        return "this is the city";
+        return env('APP_API_KEY');
         // return Http::withToken(env('APP_API_KEY'))
         //     ->post(
         //         'https://api.openai.com/v1/chat/completions',

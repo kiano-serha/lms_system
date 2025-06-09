@@ -50,23 +50,24 @@ class GeneralServices
 
     public function generateText($prompt)
     {
-        return Http::withToken(env('APP_API_KEY'))
-            ->post(
-                'https://api.openai.com/v1/chat/completions',
-                [
-                    "model" => "gpt-4o-mini",
-                    "messages" => [
-                        [
-                            "role" => "system",
-                            "content" => "Only use credible sources and provide citations. If user question is not hypertension related, tell them you can not assist them."
-                        ],
-                        [
-                            "role" => "user",
-                            "content" => $prompt
-                        ]
-                    ]
-                ]
-            )->json('choices.0.message.content');
+        return "this is the city";
+        // return Http::withToken(env('APP_API_KEY'))
+        //     ->post(
+        //         'https://api.openai.com/v1/chat/completions',
+        //         [
+        //             "model" => "gpt-4o-mini",
+        //             "messages" => [
+        //                 [
+        //                     "role" => "system",
+        //                     "content" => "Only use credible sources and provide citations. If user question is not hypertension related, tell them you can not assist them."
+        //                 ],
+        //                 [
+        //                     "role" => "user",
+        //                     "content" => $prompt
+        //                 ]
+        //             ]
+        //         ]
+        //     )->json('choices.0.message.content');
     }
 
     public function __construct() {}
